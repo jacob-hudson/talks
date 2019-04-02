@@ -1,4 +1,4 @@
-title: My Presentation
+title: Into The Ansible
 class: animation-fade
 layout: true
 
@@ -12,68 +12,136 @@ layout: true
 class: impact
 
 # {{title}}
-## With a good subtitle :-)
+## Jacob Hudson - SpotHero - 4/3/2019
 
 ---
 
-# The basics
+# Who am I?
 
-## Getting started
+### Lead Cloud Engineer - Advanced Analytics @ Discover
+- 1/2019 - Now
+- Mostly Ansible, with some Terraform, Python, Linux
 
-Use [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) to write your slides. Don't be afraid, it's really easy!
+### Software Engineer II - Site Reliability Engineering @ Grainger
+- 6/2015-1/2019
+- Ansible, Splunk, Python, Linux
 
---
-
-## Making points
-
-Look how you can make *some* points:
---
-
-- Create slides with your **favorite text editor**
---
-
-- Focus on your **content**, not the tool
---
-
-- You can finally be **productive**!
+### Network Technician @ University Housing - University of Illinois
+- 8/2012-5/2015
+- Networking, Linux, so on...
 
 ---
 
-# There's more
+class: impact
 
-## Syntax highlighting
+# The Basics
+## Features of Ansible and Key Terms
 
-You can also add `code` to your slides:
-```html
-<div class="impact">Some HTML code</div>
+---
+
+# What is Ansible?
+
+- Python based
+- Agentless
+- Defaults to push-based operation
+- Opensource
+- Centralizaton via Tower
+- Enterprise Support
+
+---
+
+# Modes of Operations
+
+## Adhoc
+
+```bash
+ansible all -m ping
 ```
 
-## CSS classes
-
-You can use .alt[shortcut] syntax to apply .big[some style!]
-
-...or just <span class="alt">HTML</span> if you prefer.
+## Through Playbooks
+- Playbooks are series of tasks, like below
+  ```
+  - name: Sleep for 15 seconds
+    command: sleep 15
+  ```
+- Playbooks are series of plays to achieve a goal
+- Think of them like functions
 
 ---
 
-# And more...
+# (Facts), Conditionals, and Loops
 
-## 12-column grid layout
+### Facts
+- Can store values set by users, previous plays, or received from a system
+- All common types exist: ints, floats, bools, strings, etc
+- Similar to assignment in Python, except done using `set_fact`
 
-Use to the included **grid layout** classes to split content easily:
-.col-6[
-  ### Left column
+### Conditionals
+- `when` in Ansible
+- Identical to an `if` state in Python
 
-  - I'm on the left
-  - It's neat!
-]
-.col-6[
-  ### Right column
+### Loops
+- For Loops and While loops both exist
+- The docs have many good examples
 
-  - I'm on the right
-  - I love it!
-]
+---
 
-## Learn the tricks
+# Roles
 
-See the [wiki](https://github.com/gnab/remark/wiki) to learn more of what you can do with .alt[Remark.js]
+## Entirely reusable Playbook
+- Very modular
+- Think of it like a class in Python
+
+---
+
+class: impact
+
+# Use Cases
+## How has it been used
+
+---
+
+# How it is used
+
+## Provisioning
+- Building infrastructure, eg AWS services
+- Terraform
+
+## Configuration Management
+- Installing/upgrading/etc on a large free of machines at once
+- Chef/Puppet/Salt
+
+---
+
+# Self Service
+- Allowing a user a limited subset of actions
+- Fully monitored
+- Allows for UI-based interaction
+- Ansible Tower
+- Open Source Variants:  AWX and Semaphore
+
+---
+
+class: impact
+
+# Gotchas and Pitfalls
+## DevOps Engageemnt or DevOops enragement?
+
+---
+
+# Spacing
+
+---
+
+# Path Selection
+
+---
+
+# Security
+
+---
+
+class: impact
+
+# Resources
+## How to get started on your Pythonic DevOps journey!
