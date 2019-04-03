@@ -39,6 +39,11 @@ class: impact
 
 ---
 
+![]("static/babyansible.jpg")
+
+
+---
+
 # What is Ansible?
 
 - Python based
@@ -69,39 +74,117 @@ ansible all -m ping
 
 ---
 
-# (Facts), Conditionals, and Loops
+# Variables (Facts)
 
-### Facts
-- Can store values set by users, previous plays, or received from a system
-- All common types exist: ints, floats, bools, strings, etc
-- Similar to assignment in Python, except done using `set_fact`
+Python
+```
+x = 42
+phrase = "hello"
+colors = ['red','green','blue']
+```
 
-### Conditionals
-- `when` in Ansible
-- Identical to an `if` state in Python
-
-### Loops
-- For Loops and While loops both exist
-- The docs have many good examples
+Ansible
+```
+- name: Set several Variables
+  set_fact:
+    x: 42
+    phrase: "hello"
+    colors: ['red','green','blue']
+```
 
 ---
 
-# Roles
+# More Facts
 
-## Entirely reusable Playbook
+```
+- name: Capture output
+  command: dig +short google.com
+  register: output
+```
+
+---
+
+# Conditionals
+
+Python
+```
+if x == 5:
+  print x
+```
+
+Ansible
+```
+- name: Print x if it is 5
+  command: echo "{{x}}"
+  when: x == 5
+```
+
+---
+
+# Loops
+
+Python
+```
+for color in colors:
+  print color
+```
+
+Ansible
+```
+- name: list a lot of colors
+  command: echo "{{item}}"
+  with_items: "{{colors}}"
+```
+---
+
+```
+---
+  - hosts: 127.0.0.1 # hosts to run on
+    tasks:
+    - name: Set several Variables
+      set_fact:
+        x: 42
+        phrase: "hello"
+        colors: = ['red','green','blue']
+
+    - name: Capture output
+      command: dig +short google.com
+      register: output
+
+    - name: Print x if it is 5
+      command: echo "{{x}}"
+      when: x == 5
+
+    - name: list a lot of colors
+      command: echo "{{item}}"
+      with_items: "{{colors}}"
+```
+
+---
+
+# Roles & Galaxy
+
+## Roles - Entirely reusable Playbook
 - Very modular
 - Think of it like a class in Python
+- Create scaffolding for a new role with `ansible-galaxy init <rolename>`
+
+## Galaxy - Marketplace of prebuilt roles
+- https://galaxy.ansiclbe.com
+
+
+
 
 ---
 
 class: impact
 
 # Use Cases
-## How has it been used
+## Ways I have used Ansible through the years
 
 ---
 
-# How it is used
+# Provisioning & Configuration Management
 
 ## Provisioning
 - Building infrastructure, eg AWS services
@@ -125,19 +208,65 @@ class: impact
 class: impact
 
 # Gotchas and Pitfalls
-## DevOps Engageemnt or DevOops enragement?
+## DevOps Engagement or DevOops Enragement?
 
 ---
 
-# Spacing
+# Spacing & Indentation/General Errors
+```
+---
+  - hosts: 127.0.0.1 # hosts to run on
+    tasks:
+    - name: Showing indent issues
+      shell: hostname
+      changed_when: false
+      failed_when: false # look here
+      register: output
+
+    - name: Echo hostname
+      command: echo {{item}}
+      with_items:
+        - {{output}} # this needs quotes
+```
 
 ---
 
-# Path Selection
+# Variable Reuse
+```
+---
+  - hosts: 127.0.0.1 # hosts to run on
+    vars:
+      is_one: 1
+    tasks:
+    - name: This is true
+      command: echo foo
+      when: is_true == 1
+
+    - name: This is false
+      command: echo bar
+      when: is_true != 1
+
+    - name: Write output to console
+      debug:
+        var: is_true.stdout
+```
 
 ---
 
 # Security
+```
+- name: Create a JIRA issue
+  uri:
+    url: https://your.jira.example.com/rest/api/2/issue/
+    method: POST
+    user: your_username
+    password: your_pass # this will be written to ansible.log
+    body: "{{ lookup('file','issue.json') }}"
+    force_basic_auth: yes
+    status_code: 201
+    body_format: json
+  no_log: true # you need this to prevent that
+```
 
 ---
 
@@ -145,3 +274,14 @@ class: impact
 
 # Resources
 ## How to get started on your Pythonic DevOps journey!
+
+---
+# Resources
+
+## Books
+- Ansible Up and Running
+- Ansible for DevOps
+## Blogs
+- Jeff Geerling
+## Repos
+- DebOps
