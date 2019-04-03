@@ -1,0 +1,13 @@
+---
+  - hosts: 127.0.0.1 # hosts to run on
+    tasks:
+    - name: Showing indent issues
+      shell: hostname
+      changed_when: false
+      failed_when: false # look here
+      register: output
+
+    - name: Echo hostname
+      command: echo {{item}}
+      with_items:
+        - {{output}} # this needs quotes

@@ -1,0 +1,16 @@
+---
+  - hosts: 127.0.0.1 # hosts to run on
+    vars:
+      is_one: 1
+    tasks:
+    - name: This is true
+      command: echo foo
+      when: is_true == 1
+
+    - name: This is false
+      command: echo bar
+      when: is_true != 1
+
+    - name: Write output to console
+      debug:
+        var: is_true.stdout

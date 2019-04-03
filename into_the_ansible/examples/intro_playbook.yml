@@ -1,0 +1,20 @@
+---
+  - hosts: 127.0.0.1 # hosts to run on
+    tasks:
+    - name: Set several Variables
+      set_fact:
+        x: 42
+        phrase: "hello"
+        colors: = ['red','green','blue']
+
+    - name: Capture output
+      command: dig +short google.com
+      register: output
+
+    - name: Print x if it is 5
+      command: echo "{{x}}"
+      when: x == 5
+
+    - name: list a lot of colors
+      command: echo "{{item}}"
+      with_items: "{{colors}}"
