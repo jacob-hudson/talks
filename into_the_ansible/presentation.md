@@ -12,7 +12,13 @@ layout: true
 class: impact
 
 # {{title}}
-## Jacob Hudson - SpotHero - 4/3/2019
+## Jacob Hudson - ChiPy WebDev SIG @ SpotHero - 4/3/2019
+
+---
+
+<center>
+<img class="one" src="static/discover.png" alt="Discover">
+</center>
 
 ---
 
@@ -32,6 +38,21 @@ class: impact
 
 ---
 
+<center>
+<img class="one" src="static/devoops.png" alt="DevOops">
+</center>
+
+---
+
+# Why should you care?
+
+<center>
+<img class="one" src="static/nojob.jpg" alt="Job">
+</center>
+
+---
+
+
 class: impact
 
 # The Basics
@@ -39,19 +60,32 @@ class: impact
 
 ---
 
-![]("static/babyansible.jpg")
-
+<center>
+<img class="one" src="static/babyansible.jpg" alt="Baby">
+</center>
 
 ---
 
 # What is Ansible?
 
-- Python based
-- Agentless
-- Defaults to push-based operation
-- Opensource
-- Centralizaton via Tower
-- Enterprise Support
+
+.col-6[
+  ### Free
+  - Agentless
+  - Defaults to push-based operation
+  - Opensource
+
+  ### Paid
+  - Centralizaton via Tower
+  - Enterprise Support
+]
+
+.col-6[
+  <right>
+  <img class="one" src="static/ansible.png" alt="Screams">
+  </right>
+]
+
 
 ---
 
@@ -205,10 +239,25 @@ class: impact
 
 ---
 
+
 class: impact
 
 # Gotchas and Pitfalls
 ## DevOps Engagement or DevOops Enragement?
+
+---
+
+# Issues with Ansible
+
+- Python 2 (for now)
+- Serial execution (slow)
+- Less common modules are brittle
+- General Python/YAML issues (Whitespaces)
+
+<center>
+<img class="one" src="static/ansible_screams.png" alt="Screams">
+</center>
+
 
 ---
 
@@ -220,13 +269,13 @@ class: impact
     - name: Showing indent issues
       shell: hostname
       changed_when: false
-      failed_when: false # look here
+       failed_when: false # look here
       register: output
 
     - name: Echo hostname
       command: echo {{item}}
       with_items:
-        - {{output}} # this needs quotes
+        - {{output}} # and here
 ```
 
 ---
@@ -276,12 +325,33 @@ class: impact
 ## How to get started on your Pythonic DevOps journey!
 
 ---
+
 # Resources
 
-## Books
-- Ansible Up and Running
-- Ansible for DevOps
-## Blogs
-- Jeff Geerling
-## Repos
-- DebOps
+Technical resources to get you started:
+
+.col-6[
+  ### Blogs
+  - https://www.jeffgeerling.com/blog?page=2
+  - https://www.ansible.com/blog
+
+  ### Books
+  - Ansible Up and Running
+  - Ansible for DevOps
+]
+
+.col-6[
+  ### Repos
+  - https://github.com/jdauphant/awesome-ansible
+  - https://github.com/debops/debops
+
+  ### Tools
+  - Vagrant
+  - Docker
+]
+
+---
+
+<center>
+<img class="one" src="static/screams.png" alt="Screams">
+</center>

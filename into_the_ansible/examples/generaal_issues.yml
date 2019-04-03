@@ -4,10 +4,10 @@
     - name: Showing indent issues
       shell: hostname
       changed_when: false
-      failed_when: false # look here
+       failed_when: false
       register: output
 
     - name: Echo hostname
       command: echo {{item}}
       with_items:
-        - {{output}} # this needs quotes
+        - {{output}}
